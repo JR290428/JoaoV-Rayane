@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Presentes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Lista de Presentes</h1>
+
+    <div class="presentes">
+      <div class="cartao">
+        <img src="images/presente1.png" alt="Presente">
+        <p>3 meses de Crossfit para o noivo poder usar sunga no verão</p>
+        <div class="valor">R$630,00</div>
+        <button class="botao" onclick="mostrarPix()">Presentear</button>
+      </div>
+
+      <!-- +++++ FAZER MAIS 9 ITENS IGUAIS A ESTE +++++ -->
+    </div>
+
+    <div id="pix" class="pix" style="display:none;">
+      <h2>Dados para Presentear</h2>
+      <img src="images/qrcode.png" alt="QR Code PIX" class="qrcode">
+      <p><b>Chave Pix (telefone):</b> 48 998422151</p>
+      <p><b>Nome:</b> Rayane Velho da Silva</p>
+      <p><b>Banco:</b> C6 Bank</p>
+    </div>
+  </div>
+
+  <script>
+    function mostrarPix() {
+      document.getElementById("pix").style.display = "block";
+    }
+  </script>
+</body>
+</html>

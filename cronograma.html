@@ -1,30 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Localização e Cronograma</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Localização e cronograma</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="topo">
-    <img src="images/localigreja.png" alt="Local Igreja" class="imagem-topo">
+  <!-- Hero full -->
+  <div class="hero" style="background-image: url('images/localigreja.png');">
+    <div class="hero-overlay">
+      <h1 class="hero-titulo">Localização e cronograma</h1>
+    </div>
   </div>
 
-  <div class="container">
-    <h1>Fazenda Paraíso - Serra Catarinense</h1>
+  <main class="secao">
+    <h2 class="titulo-local">Fazenda Paraíso - Serra Catarinense</h2>
 
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." 
-      width="100%" height="300" style="border:0;" allowfullscreen></iframe>
-
-    <div class="horarios">
-      <h2>Cronograma</h2>
-      <p>🕑 14:30h – Cerimônia</p>
-      <p>🕓 16:30h – Brunch</p>
-      <p>🕗 20:00h – After</p>
+    <!-- Mapa incorporado + botão para abrir no Google Maps -->
+    <div class="mapa-bloco">
+      <iframe
+        class="mapa"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Fazenda%20Para%C3%ADso%20-%20Serra%20Catarinense&output=embed">
+      </iframe>
+      <a class="btn btn-outlined" target="_blank" href="https://goo.gl/maps/dfkx1d5iAVjG5V7S7">Abrir no Google Maps</a>
     </div>
 
-    <p class="mensagem">Aguardamos você nesse dia tão especial 💚</p>
-  </div>
+    <!-- Cronograma em estilo relógio -->
+    <ul class="cron-lista">
+      <li class="cron-item">
+        <span class="hora"><span class="relogio">🕒</span> 14:30</span>
+        <span class="evento">Cerimônia</span>
+      </li>
+      <li class="cron-item">
+        <span class="hora"><span class="relogio">🕞</span> 16:30</span>
+        <span class="evento">Brunch</span>
+      </li>
+      <li class="cron-item">
+        <span class="hora"><span class="relogio">🕗</span> 20:00</span>
+        <span class="evento">After</span>
+      </li>
+    </ul>
+
+    <p class="msg-final">Aguardamos você nesse dia tão especial 💚</p>
+  </main>
+
+  <footer class="rodape">
+    <a class="link-voltar" href="index.html">⬅ Voltar ao início</a>
+  </footer>
 </body>
 </html>

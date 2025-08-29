@@ -1,39 +1,170 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lista de Presentes</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Lista de Presentes</h1>
+  <header class="topo-menor">
+    <h1 class="titulo-pagina">Lista de Presentes</h1>
+    <p class="subtitulo">Escolha um presente especial ou contribua via PIX 💚</p>
+  </header>
 
-    <div class="presentes">
-      <div class="cartao">
-        <img src="images/presente1.png" alt="Presente">
-        <p>3 meses de Crossfit para o noivo poder usar sunga no verão</p>
-        <div class="valor">R$630,00</div>
-        <button class="botao" onclick="mostrarPix()">Presentear</button>
+  <main class="secao">
+    <div class="grid-presentes">
+
+      <!-- MODELO DE CARTÃO — copie/edite à vontade -->
+      <div class="card-presente" data-descricao="3 meses de Crossfit para o noivo">
+        <img src="https://placehold.co/600x400?text=Crossfit" alt="Crossfit" class="img-presente" />
+        <div class="conteudo-presente">
+          <h3>3 meses de Crossfit para o noivo usar sunga no verão 😅</h3>
+          <div class="preco">R$ 630,00</div>
+          <button class="btn btn-block btn-presentear">Presentear</button>
+        </div>
       </div>
 
-      <!-- +++++ FAZER MAIS 9 ITENS IGUAIS A ESTE +++++ -->
+      <div class="card-presente" data-descricao="Massagem relaxante pré-casamento">
+        <img src="https://placehold.co/600x400?text=Spa" alt="Massagem" class="img-presente" />
+        <div class="conteudo-presente">
+          <h3>Massagem relaxante para os noivos</h3>
+          <div class="preco">R$ 220,00</div>
+          <button class="btn btn-block btn-presentear">Presentear</button>
+        </div>
+      </div>
+
+      <div class="card-presente" data-descricao="Jantar romântico">
+        <img src="https://placehold.co/600x400?text=Jantar" alt="Jantar" class="img-presente" />
+        <div class="conteudo-presente">
+          <h3>Jantar romântico pós-casamento</h3>
+          <div class="preco">R$ 280,00</div>
+          <button class="btn btn-block btn-presentear">Presentear</button>
+        </div>
+      </div>
+
+      <div class="card-presente" data-descricao="Passeio de balão">
+        <img src="https://placehold.co/600x400?text=Bal%C3%A3o" alt="Balão" class="img-presente" />
+        <div class="conteudo-presente">
+          <h3>Passeio de balão ao amanhecer</h3>
+          <div class="preco">R$ 950,00</div>
+          <button class="btn btn-block btn-presentear">Presentear</button>
+        </div>
+      </div>
+
+      <div class="card-presente" data-descricao="Cota da lua de mel">
+        <img src="https://placehold.co/600x400?text=Lua+de+Mel" alt="Lua de mel" class="img-presente" />
+        <div class="conteudo-presente">
+          <h3>Cota da lua de mel</h3>
+          <div class="preco">R$ 200,00</div>
+          <button class="btn btn-block btn-presentear">Presentear</button>
+        </div>
+      </div>
+
+      <div class="card-presente" data-descricao="Passeio de vinho">
+        <img src="https://placehold.co/600x400?text=Vinhos" alt="Vinhos" class="img-presente" />
+        <div class="conteudo-presente">
+          <h3>Tour de vinhos na serra</h3>
+          <div class="preco">R$ 350,00</div>
+          <button class="btn btn-block btn-presentear">Presentear</button>
+        </div>
+      </div>
+
+      <div class="card-presente" data-descricao="Kit churrasco">
+        <img src="https://placehold.co/600x400?text=Churrasco" alt="Churrasco" class="img-presente" />
+        <div class="conteudo-presente">
+          <h3>Kit churrasco do noivo</h3>
+          <div class="preco">R$ 180,00</div>
+          <button class="btn btn-block btn-presentear">Presentear</button>
+        </div>
+      </div>
+
+      <div class="card-presente" data-descricao="Jogo de cama 600 fios">
+        <img src="https://placehold.co/600x400?text=Enxoval" alt="Enxoval" class="img-presente" />
+        <div class="conteudo-presente">
+          <h3>Jogo de cama 600 fios</h3>
+          <div class="preco">R$ 420,00</div>
+          <button class="btn btn-block btn-presentear">Presentear</button>
+        </div>
+      </div>
+
+      <div class="card-presente" data-descricao="Robot aspirador">
+        <img src="https://placehold.co/600x400?text=Casa" alt="Casa" class="img-presente" />
+        <div class="conteudo-presente">
+          <h3>Robô aspirador (cota)</h3>
+          <div class="preco">R$ 300,00</div>
+          <button class="btn btn-block btn-presentear">Presentear</button>
+        </div>
+      </div>
+
+      <div class="card-presente" data-descricao="Jogo de panelas">
+        <img src="https://placehold.co/600x400?text=Panelas" alt="Panelas" class="img-presente" />
+        <div class="conteudo-presente">
+          <h3>Jogo de panelas antiaderente</h3>
+          <div class="preco">R$ 520,00</div>
+          <button class="btn btn-block btn-presentear">Presentear</button>
+        </div>
+      </div>
+
     </div>
 
-    <div id="pix" class="pix" style="display:none;">
-      <h2>Dados para Presentear</h2>
-      <img src="images/qrcode.png" alt="QR Code PIX" class="qrcode">
-      <p><b>Chave Pix (telefone):</b> 48 998422151</p>
-      <p><b>Nome:</b> Rayane Velho da Silva</p>
-      <p><b>Banco:</b> C6 Bank</p>
-    </div>
-  </div>
+    <!-- Seção de pagamento PIX -->
+    <section id="pagamento" class="pagamento card-form">
+      <h2>💚 Presentear via PIX</h2>
+      <p id="presenteEscolhido" class="subtexto">Presente escolhido: <em>Selecione um cartão acima</em></p>
+
+      <div class="pix-grid">
+        <div class="pix-qr">
+          <!-- QR code com os dados básicos (observação: QR "completo" do Pix exige payload EMV) -->
+          <img id="qrPix" src="" alt="QR Code PIX" />
+        </div>
+        <div class="pix-dados">
+          <p><strong>Chave PIX (telefone):</strong> <span id="pixTel">48 998422151</span></p>
+          <p><strong>Beneficiário:</strong> Rayane Velho da Silva</p>
+          <p><strong>Banco:</strong> C6 Bank</p>
+          <button class="btn btn-outlined" id="btnCopiar">Copiar chave PIX</button>
+        </div>
+      </div>
+
+      <p class="nota">Dica: após presentear, você pode nos enviar uma mensagem carinhosa 💌</p>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <a class="link-voltar" href="index.html">⬅ Voltar ao início</a>
+  </footer>
 
   <script>
-    function mostrarPix() {
-      document.getElementById("pix").style.display = "block";
+    // Atualiza a seção de pagamento com o presente escolhido e gera QR
+    function gerarQR(texto) {
+      const data = encodeURIComponent(texto);
+      return `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${data}`;
     }
+
+    const tel   = document.getElementById('pixTel').textContent.replace(/\s+/g,'');
+    const cards = document.querySelectorAll('.btn-presentear');
+    const qrImg = document.getElementById('qrPix');
+    const alvo  = document.getElementById('pagamento');
+    const escolhidoEl = document.getElementById('presenteEscolhido');
+
+    cards.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = e.target.closest('.card-presente');
+        const desc = card.getAttribute('data-descricao') || 'Presente';
+        escolhidoEl.innerHTML = `Presente escolhido: <strong>${desc}</strong>`;
+        const payload = `PIX telefone: +55${tel} | Nome: Rayane Velho da Silva | Banco: C6 Bank | Referência: ${desc}`;
+        qrImg.src = gerarQR(payload);
+        // rola até a seção de pagamento
+        alvo.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Copiar chave PIX
+    document.getElementById('btnCopiar').addEventListener('click', () => {
+      navigator.clipboard.writeText(`+55 ${tel}`).then(() => {
+        alert('Chave PIX copiada!');
+      });
+    });
   </script>
 </body>
 </html>

@@ -1,52 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casamento João & Rayane</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>João & Rayane — Casamento</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <!-- Monograma -->
-    <img src="images/monograma.png" alt="Monograma" class="monograma">
+  <header class="topo">
+    <!-- Monograma ~10cm (≈380px) com responsividade -->
+    <img src="images/monograma.png" alt="Monograma dos noivos" class="monograma-grande" />
 
-    <!-- Nomes -->
-    <h1 class="nomes">João Vitor & Rayane</h1>
+    <h1 class="nomes-cursivos">João Vitor & Rayane</h1>
+    <p class="data-casamento">29 de Abril de 2028</p>
+  </header>
 
-    <!-- Data -->
-    <h2 class="data">29 de Abril de 2028</h2>
-
-    <!-- Contagem regressiva -->
-    <div id="contador" class="contador"></div>
-
-    <!-- Botões -->
-    <div class="botoes">
-      <a href="rsvp.html" class="botao">Confirmar Presença</a>
-      <a href="presentes.html" class="botao">Lista de Presentes</a>
-      <a href="cronograma.html" class="botao">Localização e Cronograma</a>
+  <!-- Contagem regressiva estilo calendário (sem segundos) -->
+  <section class="secao countdown-wrapper">
+    <div class="countdown">
+      <div class="box"><div id="cd-dias" class="num">0</div><div class="rotulo">Dias</div></div>
+      <div class="box"><div id="cd-horas" class="num">0</div><div class="rotulo">Horas</div></div>
+      <div class="box"><div id="cd-min" class="num">0</div><div class="rotulo">Min</div></div>
     </div>
-  </div>
+  </section>
+
+  <!-- Botões das páginas -->
+  <section class="secao botoes-wrapper">
+    <a class="btn btn-lg" href="rsvp.html">📋 Confirmar presença (RSVP)</a>
+    <a class="btn btn-lg" href="presentes.html">🎁 Lista de Presentes</a>
+    <a class="btn btn-lg" href="cronograma.html">📍 Localização e cronograma</a>
+  </section>
+
+  <footer class="rodape">
+    <p>Com muito carinho, esperamos você no nosso grande dia 💚</p>
+  </footer>
 
   <script>
-    function atualizarContador() {
-      const destino = new Date("2028-04-29T14:30:00").getTime();
-      const agora = new Date().getTime();
-      const distancia = destino - agora;
+    // Contagem regressiva (D/H/M) para 29/04/2028 14:30
+    const alvo = new Date("April 29, 2028 14:30:00").getTime();
+    const elDias  = document.getElementById("cd-dias");
+    const elHoras = document.getElementById("cd-horas");
+    const elMin   = document.getElementById("cd-min");
 
-      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+    function atualizaCountdown() {
+      const agora = Date.now();
+      let diff = alvo - agora;
+      if (diff < 0) diff = 0;
 
-      document.getElementById("contador").innerHTML = `
-        <div class="calendario">
-          <div><span>${dias}</span>dias</div>
-          <div><span>${horas}</span>h</div>
-          <div><span>${minutos}</span>min</div>
-        </div>`;
+      const dias  = Math.floor(diff / (1000*60*60*24));
+      const horas = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      const min   = Math.floor((diff % (1000*60*60)) / (1000*60));
+
+      elDias.textContent  = dias;
+      elHoras.textContent = horas;
+      elMin.textContent   = min;
     }
-    setInterval(atualizarContador, 1000);
+
+    // Atualiza a cada 30s (não exibimos segundos)
+    atualizaCountdown();
+    setInterval(atualizaCountdown, 30000);
   </script>
 </body>
 </html>

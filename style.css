@@ -1,101 +1,187 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff;
-  color: #333;
+:root{
+  --olive: #4a6b51;
+  --olive-dark: #36533e;
+  --olive-100: #eef5f0;
+  --text: #333;
+  --bg: #ffffff;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
   text-align: center;
 }
 
-.container {
-  padding: 20px;
+/* --------- Header / topo --------- */
+.topo{
+  padding: 40px 20px 10px;
 }
-
-.monograma {
-  width: 200px; /* ≈10cm */
-  margin-top: 20px;
+.topo-menor{
+  padding: 24px 16px 10px;
 }
-
-.nomes {
-  font-family: 'Great Vibes', cursive;
-  font-size: 36px;
-  color: #4a6b51;
-  margin: 10px 0;
+.nom es-cursivos, .nomes-cursivos{
+  font-family: 'Dancing Script', cursive;
+  font-size: 40px;
+  color: var(--olive);
+  margin: 8px 0;
 }
-
-.data {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.contador .calendario {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin: 20px 0;
-}
-.calendario div {
-  background: #4a6b51;
-  color: white;
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 18px;
-}
-.calendario span {
-  display: block;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.botoes {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.botao {
-  background: #4a6b51;
-  color: white;
-  padding: 15px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 18px;
-  display: inline-block;
-}
-.botao:hover {
-  background: #6e8f74;
-}
-
-.presentes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-.cartao {
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  padding: 15px;
-  background: #f9f9f9;
-}
-.cartao img {
-  width: 100%;
-  border-radius: 10px;
-}
-.valor {
-  background: #4a6b51;
-  color: white;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 10px;
-  font-size: 18px;
-}
-
-.qrcode {
-  width: 200px;
-  margin: 15px 0;
-}
-
-.horarios p {
+.data-casamento{
   font-size: 22px;
-  margin: 10px 0;
+  color: var(--olive);
+  margin: 8px 0 10px;
 }
+.monograma-grande{
+  width: clamp(220px, 40vw, 380px); /* ≈ 10cm máx */
+  height: auto;
+}
+
+/* --------- Seções --------- */
+.secao{
+  padding: 24px 16px;
+}
+.rodape{
+  padding: 24px 16px;
+  color:#555;
+}
+
+/* --------- Botões --------- */
+.btn{
+  display: inline-block;
+  background: var(--olive);
+  color: #fff;
+  border: 2px solid var(--olive);
+  padding: 12px 18px;
+  border-radius: 28px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: .25s ease;
+  cursor: pointer;
+}
+.btn:hover{
+  background: #fff;
+  color: var(--olive);
+}
+.btn-lg{ font-size: 18px; margin: 8px; min-width: 260px; }
+.btn-block{ display:block; width:100%; }
+.btn-outlined{
+  background:#fff; color: var(--olive); border:2px solid var(--olive);
+}
+.btn-outlined:hover{ background: var(--olive-100); }
+.btn-danger{
+  background:#fff; color:#b64545; border:2px solid #b64545;
+}
+.btn-danger:hover{
+  background:#ffecec;
+}
+
+/* --------- Countdown --------- */
+.countdown-wrapper{ background: var(--olive-100); }
+.countdown{
+  display:flex; justify-content:center; gap:16px; flex-wrap:wrap; max-width:800px; margin:0 auto;
+}
+.countdown .box{
+  background: var(--olive);
+  color:#fff;
+  min-width: 110px;
+  border-radius:16px;
+  padding:18px 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+.countdown .num{ font-size:34px; font-weight:800; line-height:1; }
+.countdown .rotulo{ font-size:14px; opacity:.95; margin-top:6px; letter-spacing:.5px; }
+
+/* --------- Botões da home --------- */
+.botoes-wrapper{
+  display:flex; flex-direction:column; gap:14px; max-width:420px; margin: 24px auto 8px;
+}
+
+/* --------- Formulários --------- */
+.form-container{ padding: 12px 16px 28px; }
+.card-form{
+  text-align:left; background:#fff; max-width:700px; margin:0 auto; padding:20px; border-radius:16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+.lbl{ display:block; font-weight:bold; margin:12px 0 6px; color: var(--olive-dark); }
+.inp, .card-form textarea, .card-form input[type="text"], .card-form input[type="number"]{
+  width:100%; padding:12px 14px; border:1px solid #d9e3dc; border-radius:10px; outline:none;
+}
+.fieldset{
+  border: 1px solid #d9e3dc; border-radius:12px; padding:12px 14px; margin: 14px 0;
+}
+.radio{ display:block; margin:8px 0; }
+.subtitulo{ margin: 0; color:#555; }
+.subtexto{ color:#555; }
+.msg-final{ margin: 18px 0 6px; color: var(--olive); font-weight: bold; }
+
+.acompanhantes-header{ display:flex; align-items:center; justify-content:space-between; margin-top:6px; }
+.linha-acomp{ display:flex; gap:10px; margin:8px 0; }
+.linha-acomp .inp{ flex:1; }
+
+/* --------- Presentes --------- */
+.grid-presentes{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:16px; max-width:1100px; margin: 0 auto;
+}
+.card-presente{
+  background:#fff; border-radius:16px; overflow:hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  display:flex; flex-direction:column;
+}
+.img-presente{ width:100%; height:180px; object-fit:cover; }
+.conteudo-presente{ padding:14px; text-align:left; }
+.conteudo-presente h3{ margin: 6px 0 10px; color: var(--olive-dark); font-size: 18px; }
+.preco{
+  display:inline-block; background: var(--olive); color:#fff; padding:6px 10px; border-radius:10px; font-weight:700; margin-bottom:10px;
+}
+
+/* Pagamento PIX */
+.pagamento{ margin-top:22px; }
+.pix-grid{ display:grid; grid-template-columns: 1fr; gap:14px; align-items:center; }
+.pix-qr img{ width:240px; height:240px; object-fit:contain; }
+@media (min-width:700px){
+  .pix-grid{ grid-template-columns: 300px 1fr; }
+}
+
+/* --------- Hero/Mapa/Cronograma --------- */
+.hero{
+  position:relative; min-height: 90vh; background-size:cover; background-position:center;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-overlay{
+  background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.35));
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+}
+.hero-titulo{
+  position:relative; color:#fff; font-size: clamp(24px, 6vw, 46px); margin:0;
+  text-shadow: 0 8px 24px rgba(0,0,0,.45);
+}
+.titulo-local{ color: var(--olive); margin: 20px 0 8px; }
+.mapa-bloco{ max-width: 900px; margin: 10px auto 18px; }
+.mapa{
+  width: 100%; height: 360px; border:0; border-radius:16px; box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+/* Lista de horários (estilo relógio) */
+.cron-lista{
+  list-style:none; padding:0; max-width:700px; margin: 0 auto;
+}
+.cron-item{
+  display:flex; align-items:center; justify-content:space-between;
+  background:#fff; margin:10px 0; padding:16px 18px; border-radius:14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+.hora{
+  font-size: 24px; font-weight: 800; color: var(--olive);
+}
+.relogio{ margin-right:8px; }
+.evento{
+  font-size: 18px; color:#333; font-weight: 600;
+}
+
+/* Links utilitários */
+.link-voltar{ color: var(--olive); text-decoration: none; font-weight: bold; }
+.link-voltar:hover{ text-decoration: underline; }

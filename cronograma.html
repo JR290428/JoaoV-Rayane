@@ -2,53 +2,92 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Localização e cronograma</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .dresscode, .cores {
+      margin: 30px auto;
+      text-align: center;
+      max-width: 700px;
+    }
+    .dresscode p {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    .cores-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .cor-bloco {
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: center;
+    }
+    .cor-madrinhas {
+      background-color: #4a6b51; /* verde pantone */
+    }
+    .cor-noivo {
+      background-color: #d9c8a3; /* bege */
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-  <!-- Hero full -->
-  <div class="hero" style="background-image: url('images/localigreja.png');">
-    <div class="hero-overlay">
-      <h1 class="hero-titulo">Localização e cronograma</h1>
-    </div>
+  <div class="hero" style="background-image:url('images/localigreja.png');">
+    <div class="hero-overlay"><h1 class="hero-titulo">Localização e cronograma</h1></div>
   </div>
 
   <main class="secao">
     <h2 class="titulo-local">Fazenda Paraíso - Serra Catarinense</h2>
 
-    <!-- Mapa incorporado + botão para abrir no Google Maps -->
     <div class="mapa-bloco">
-      <iframe
-        class="mapa"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q=Fazenda%20Para%C3%ADso%20-%20Serra%20Catarinense&output=embed">
-      </iframe>
-      <a class="btn btn-outlined" target="_blank" href="https://goo.gl/maps/dfkx1d5iAVjG5V7S7">Abrir no Google Maps</a>
+      <iframe class="mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Fazenda+Para%C3%ADso+Serra+Catarinense&output=embed"></iframe>
+      <p><a class="btn btn-outlined" target="_blank" href="https://goo.gl/maps/dfkx1d5iAVjG5V7S7">Abrir no Google Maps</a></p>
     </div>
 
-    <!-- Cronograma em estilo relógio -->
     <ul class="cron-lista">
-      <li class="cron-item">
-        <span class="hora"><span class="relogio">🕒</span> 14:30</span>
-        <span class="evento">Cerimônia</span>
-      </li>
-      <li class="cron-item">
-        <span class="hora"><span class="relogio">🕞</span> 16:30</span>
-        <span class="evento">Brunch</span>
-      </li>
-      <li class="cron-item">
-        <span class="hora"><span class="relogio">🕗</span> 20:00</span>
-        <span class="evento">After</span>
-      </li>
+      <li class="cron-item"><span class="hora">🕒 14:30</span><span class="evento">Cerimônia</span></li>
+      <li class="cron-item"><span class="hora">🕒 16:30</span><span class="evento">Brunch</span></li>
+      <li class="cron-item"><span class="hora">🕒 20:00</span><span class="evento">After</span></li>
     </ul>
+
+    <!-- Dress code -->
+    <section class="dresscode">
+      <h2>👗 Dress Code</h2>
+      <p>
+        O casamento será <b>ao ar livre</b>, em meio à natureza e com bastante grama 🌿.<br>
+        Sugerimos roupas <b>leves, confortáveis e que não arrastem no chão</b>.<br>
+        Pense em algo elegante mas prático para aproveitar todos os momentos.
+      </p>
+    </section>
+
+    <!-- Cores dos padrinhos/madrinhas/noivo -->
+    <section class="cores">
+      <h2>🎨 Paleta de Cores</h2>
+      <p>Para os trajes de padrinhos, madrinhas e noivo, escolhemos estas cores:</p>
+      <div class="cores-container">
+        <div class="cor-bloco cor-madrinhas">Madrinhas & Padrinhos<br>#4A6B51</div>
+        <div class="cor-bloco cor-noivo">Noivo<br>Bege</div>
+      </div>
+    </section>
 
     <p class="msg-final">Aguardamos você nesse dia tão especial 💚</p>
   </main>
 
-  <footer class="rodape">
-    <a class="link-voltar" href="index.html">⬅ Voltar ao início</a>
-  </footer>
+  <footer class="rodape"><a class="link-voltar" href="index.html">⬅ Voltar ao início</a></footer>
 </body>
 </html>
+

@@ -2,80 +2,73 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RSVP — Confirmação de Presença</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Confirmação de Presença</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      text-align: center;
+      padding: 30px 20px;
+    }
+    h1 {
+      color: #4a6b51;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    iframe {
+      width: 100%;
+      max-width: 640px;
+      height: 900px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .msg-final {
+      margin-top: 25px;
+      font-size: 20px;
+      color: #4a6b51;
+      font-weight: bold;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      background-color: #4a6b51;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #3b5641;
+    }
+  </style>
 </head>
 <body>
-  <header class="topo-menor">
-    <h1 class="titulo-pagina">Confirmação de Presença</h1>
-    <p class="subtitulo">Favor confirmar até <strong>20/03/2028</strong>.</p>
-  </header>
+  <div class="container">
+    <h1>Confirmação de Presença 💌</h1>
+    <p>Preencha o formulário abaixo para nos avisar se poderá comparecer:</p>
 
-  <main class="form-container">
-    <form id="rsvpForm" class="card-form">
-      <!-- Nome do convidado -->
-      <label class="lbl">Seu nome</label>
-      <input class="inp" type="text" name="nome" placeholder="Digite seu nome completo" required />
+    <!-- Google Forms incorporado -->
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSelWxqfizLTWxBzm9m3uOx4R11pgcpdnYvvK_k2pOiGO2mbiQ/viewform?embedded=true">
+      Carregando…
+    </iframe>
 
-      <!-- Acompanhantes dinâmicos -->
-      <div class="acompanhantes-header">
-        <span class="lbl">Acompanhante(s)</span>
-        <button class="btn btn-outlined" id="addAcomp" type="button">+ Adicionar acompanhante</button>
-      </div>
-      <div id="listaAcompanhantes"></div>
-
-      <!-- Confirmação Sim/Não com frases -->
-      <fieldset class="fieldset">
-        <legend class="lbl">Você vai conseguir celebrar com a gente?</legend>
-        <label class="radio">
-          <input type="radio" name="confirmacao" value="Sim" required />
-          <span>Sim! 💚 Não perderia por nada!</span>
-        </label>
-        <label class="radio">
-          <input type="radio" name="confirmacao" value="Não" />
-          <span>Infelizmente não poderei 😢</span>
-        </label>
-      </fieldset>
-
-      <!-- Observação -->
-      <label class="lbl">Observação (opcional)</label>
-      <textarea class="inp" name="obs" rows="4" placeholder="Ex.: restrição alimentar, recado para os noivos..."></textarea>
-
-      <button class="btn btn-lg" type="submit">Enviar confirmação</button>
-    </form>
-
-    <p class="msg-final">Aguardamos a sua presença com muito carinho 💕</p>
-  </main>
-
-  <footer class="rodape">
-    <a class="link-voltar" href="index.html">⬅ Voltar ao início</a>
-  </footer>
-
-  <script>
-    // Adicionar campos de acompanhantes dinamicamente
-    const btnAdd = document.getElementById('addAcomp');
-    const lista  = document.getElementById('listaAcompanhantes');
-
-    btnAdd.addEventListener('click', () => {
-      const wrap = document.createElement('div');
-      wrap.className = 'linha-acomp';
-      wrap.innerHTML = `
-        <input class="inp" type="text" name="acompanhante[]" placeholder="Nome do acompanhante" />
-        <button class="btn btn-danger" type="button">Remover</button>
-      `;
-      wrap.querySelector('button').addEventListener('click', () => wrap.remove());
-      lista.appendChild(wrap);
-    });
-
-    // Envio "fake" (apenas demonstração). Para integrar ao Google Sheets:
-    // - Crie um Google Form vinculado a uma planilha (Google Sheets),
-    // - Copie o "action" do Form e os "name" dos campos,
-    // - Substitua o comportamento abaixo por um form normal POST.
-    document.getElementById('rsvpForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Confirmação registrada! (Exemplo local)\n\nPara salvar no Google Sheets, conecte este formulário a um Google Form.');
-    });
-  </script>
+    <p class="msg-final">Aguardamos a sua presença com muito carinho 💚</p>
+    <a class="btn" href="index.html">⬅ Voltar ao início</a>
+  </div>
 </body>
 </html>

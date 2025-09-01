@@ -1,9 +1,9 @@
 :root{
-  --olive: #8dbffc;
-  --olive-dark: #0b81d6;
-  --olive-100: #91c4bf;
-  --text: #333;
-  --bg: #ffffff;
+  --olive:#4a6b51;
+  --olive-dark:#36533e;
+  --olive-100:#eef5f0;
+  --bg:#ffffff;
+  --text:#333;
 }
 
 *{ box-sizing: border-box; }

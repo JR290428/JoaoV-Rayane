@@ -14,118 +14,49 @@
       padding: 0;
       text-align: center;
     }
-
-    header {
-      padding: 20px;
-    }
-
-    h1 {
-      color: #4a6b51;
-      margin-bottom: 10px;
-    }
-
-    .explicacao {
-      font-size: 1.1em;
-      margin-bottom: 20px;
-      color: #3c4f42;
-    }
+    header { padding: 20px; }
+    h1 { color: #4a6b51; margin-bottom: 10px; }
+    .explicacao { font-size: 1.1em; margin-bottom: 20px; color: #3c4f42; }
 
     .search-box {
       margin: 10px auto;
-      width: 80%;
-      max-width: 500px;
-      padding: 10px;
-      border: 2px solid #4a6b51;
-      border-radius: 12px;
-      font-size: 1em;
+      width: 80%; max-width: 500px;
+      padding: 10px; border: 2px solid #4a6b51;
+      border-radius: 12px; font-size: 1em;
     }
-
     .lista-convidados {
-      text-align: left;
-      max-width: 600px;
-      margin: 20px auto;
-      background: #fff;
-      border-radius: 12px;
-      padding: 15px;
+      text-align: left; max-width: 600px; margin: 20px auto;
+      background: #fff; border-radius: 12px; padding: 15px;
       box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-      max-height: 300px;
-      overflow-y: auto;
+      max-height: 300px; overflow-y: auto;
     }
-
-    .grupo {
-      font-weight: bold;
-      color: #4a6b51;
-      margin-top: 15px;
-    }
-
-    label {
-      display: block;
-      margin: 5px 0;
-      cursor: pointer;
-    }
-
-    input[type="checkbox"] {
-      margin-right: 8px;
-    }
+    .grupo { font-weight: bold; color: #4a6b51; margin-top: 15px; }
+    label { display: block; margin: 5px 0; cursor: pointer; }
+    input[type="checkbox"] { margin-right: 8px; }
 
     .selecionados {
-      margin: 20px auto;
-      max-width: 600px;
-      text-align: left;
-      background: #e9f5ee;
-      border: 2px solid #4a6b51;
-      border-radius: 12px;
-      padding: 10px;
+      margin: 20px auto; max-width: 600px; text-align: left;
+      background: #e9f5ee; border: 2px solid #4a6b51;
+      border-radius: 12px; padding: 10px;
     }
-
     .selecionado-item {
-      display: inline-block;
-      background: #4a6b51;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 20px;
-      margin: 5px;
+      display: inline-block; background: #4a6b51; color: white;
+      padding: 5px 10px; border-radius: 20px; margin: 5px;
       font-size: 0.9em;
     }
-
-    .selecionado-item span {
-      margin-left: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+    .selecionado-item span { margin-left: 8px; cursor: pointer; font-weight: bold; }
 
     .observacao {
-      margin: 20px auto;
-      width: 80%;
-      max-width: 500px;
-      display: block;
-      padding: 10px;
-      border-radius: 12px;
-      border: 2px solid #4a6b51;
-      font-size: 1em;
+      margin: 20px auto; width: 80%; max-width: 500px; display: block;
+      padding: 10px; border-radius: 12px; border: 2px solid #4a6b51; font-size: 1em;
     }
-
     .btn {
-      background: #4a6b51;
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      margin-top: 20px;
-      border-radius: 25px;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: background 0.3s;
+      background: #4a6b51; color: white; border: none; padding: 12px 25px;
+      margin-top: 20px; border-radius: 25px; font-size: 1.1em;
+      cursor: pointer; transition: background 0.3s;
     }
-
-    .btn:hover {
-      background: #3b5742;
-    }
-
-    .msg-final {
-      margin-top: 20px;
-      color: #4a6b51;
-      font-weight: bold;
-    }
+    .btn:hover { background: #3b5742; }
+    .msg-final { margin-top: 20px; color: #4a6b51; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -138,9 +69,7 @@
 
   <input type="text" id="search" class="search-box" placeholder="Digite seu nome...">
 
-  <div class="lista-convidados" id="listaConvidados">
-    <!-- Lista gerada pelo JavaScript -->
-  </div>
+  <div class="lista-convidados" id="listaConvidados"></div>
 
   <div class="selecionados" id="selecionados">
     <p><strong>Nomes selecionados:</strong></p>
@@ -156,10 +85,35 @@
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxauy9GnIKvDGEHsGTC1RqSZ-qzbWF4afwHwj_meMWUxZJGfAAiSnxccrIdUiMw3-hrrQ/exec";
 
     const convidados = {
-      "Família Velho": ["Aline", "Claudia", "Davi", "Dona Sonia", "Fabio Vevy", "Fabi", "Henrique", "Kiki", "Lucas", "Luis", "Maria", "Raquel Medeiros Velho", "Vevy", "Wilmar"],
-      "Família Zanolli": ["Antonio", "Be", "Bia", "Cecilia", "Dete", "Diego", "Edu", "Fe", "Gabi", "Gabriela", "Henry", "Humberto", "Ivone", "Juci", "Laura", "Lino", "Lise", "Lorenzzo", "Luis Fernando", "Maria Julia", "Maria Luiza", "Paula", "Patricia", "Pedro", "Pri", "Toni", "Tonton", "William", "Ze"],
-      "Família Mendes": ["Anderson", "Carol", "Cleide", "Derick", "Dioni", "Duda", "Edinho", "Edmilson", "Eliane", "Helena", "Joana", "Joao", "Julia Mendes", "Junior", "Kety", "Lucas Mayara", "Maria Mendes", "Marcos", "Mayara", "Monique", "Nega", "Nicolas", "Ricardo", "Rafa Keli", "Vitor", "Vo Dilma"],
-      "Amigos": ["Afonso", "Angela", "Antonio", "Bode", "Chancho", "Cris", "Daura", "Denner", "Enzo", "Erick Maria", "Ezequiel", "Gabi Afonso", "Hilario", "Jauri", "Joaquim", "Ju", "Ju Ease", "Kemily", "Lucas Luana", "Luana", "Livia", "Manu", "Maria Loja", "Mariane", "Max", "Monica", "Paulo", "Paulo Ju", "Mayara Ju"]
+      "Família Velho": [
+        "Aline Inacio Velho", "Claudia Alvarenga", "Cristhian Dondossola", "Davi Marcos",
+        "Evelyn Marcos", "Fabiula Velho da Silva", "Fabio Fachin", "Henrique Marcos",
+        "Lucas Patrick Todescato Velho da Silva", "Luis Angelo Barcelos", "Maria Vitoria Todescato Velho da Silva",
+        "Raquel Medeiros Velho", "Sonia Alvarenga", "Wilmar Marcos"
+      ],
+      "Família Zanolli": [
+        "Ana Beatriz Zanolli Vitorassi", "Ana Cecilia Zanolli Vitorassi", "Ana Paula Mendes Zanolli",
+        "Antonio Zanolli", "Antonio Zilli Zanolli", "Antonella", "Bernardo Zanolli", "Carine Brigido",
+        "Cecilia Zanolli", "Diego Vitorassi", "Eduardo Bortolini", "Fernando Zanolli", "Gabriela Zanolli",
+        "Henry Luis", "Humberto Mendes Zanolli", "Ivone de Souza Zanolli", "Jose Zanolli",
+        "Juciane Mendes Zanolli", "Laura Reus", "Lino Zanolli", "Lisi Oliveira", "Lorenzzo Zanolli",
+        "Luis Fernando Zanolli", "Maria Julia Zanolli", "Maria Luiza Zanolli", "Patricia Viana Zanolli",
+        "Pedro Elias", "Priscila Dal Pont", "Rafaela Laitano", "Santina Della Bruna Zanolli",
+        "Valdete Zanolli", "William Zanolli", "Arthur Zilli Zanolli", "Bento ou Aurora", "Davi Oliveira"
+      ],
+      "Família Mendes": [
+        "Cleidi Romancini", "Dilma Mendes", "Eliane Mendes", "Joana Romancini", "Julia Romancini",
+        "Lucas Mendes", "Marcos Mendes", "Mayara Mendes", "Monique Mendes", "Ricardo Romancini",
+        "Vitor", "Edi Mendes"
+      ],
+      "Amigos": [
+        "Afonso Henrique Mota", "Angela", "Antoni Rodrigues Votri", "Cris Rodrigues", "Daura",
+        "Dener Votri", "Enzo Barboza", "Erick Maria", "Ezequiel", "Gabriele Mazzuchello",
+        "Hilario Biff", "Jauri", "Joao Vitor Silva", "Joaquim", "Juliana Daura", "Juliana Scussel Aguiar",
+        "Kemily Scarpati", "Livía Rodrigues Votri", "Lucas Schardosim", "Luana Barboza", "Manu",
+        "Mariane Aguiar", "Maria Luiza Laitano", "Max", "Monica", "Paulo", "Paulo Solano Barboza",
+        "Pedro Henrique Reis Carvalho", "Mayara Ju", "Cristina Rodrigues"
+      ]
     };
 
     let selecionados = [];
@@ -169,7 +123,9 @@
       lista.innerHTML = "";
 
       Object.keys(convidados).forEach(grupo => {
-        const nomesFiltrados = convidados[grupo].filter(nome => nome.toLowerCase().includes(filtro.toLowerCase()));
+        const nomesFiltrados = convidados[grupo].filter(nome =>
+          nome.toLowerCase().includes(filtro.toLowerCase())
+        );
         if (nomesFiltrados.length > 0) {
           const grupoDiv = document.createElement("div");
           grupoDiv.innerHTML = `<p class='grupo'>${grupo}</p>`;

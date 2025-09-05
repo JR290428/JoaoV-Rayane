@@ -1,74 +1,236 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confirmação de Presença</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #ffffff;
+      color: #333;
       margin: 0;
       padding: 0;
-      color: #333;
+      text-align: center;
     }
     .container {
-      text-align: center;
-      padding: 30px 20px;
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #f8f8f8;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
     }
     h1 {
       color: #4a6b51;
-      font-size: 28px;
-      margin-bottom: 10px;
     }
     p {
-      font-size: 18px;
-      color: #333;
       margin-bottom: 20px;
     }
-    iframe {
+    input[type="text"], textarea, select {
       width: 100%;
-      max-width: 640px;
-      height: 900px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
     }
-    .msg-final {
-      margin-top: 25px;
-      font-size: 20px;
-      color: #4a6b51;
-      font-weight: bold;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
+    button {
       background-color: #4a6b51;
-      color: #fff;
-      padding: 12px 25px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-size: 18px;
-      transition: background 0.3s;
+      color: white;
+      padding: 12px 20px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
     }
-    .btn:hover {
-      background-color: #3b5641;
+    button:hover {
+      background-color: #3d5944;
+    }
+    .msg-sucesso {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #4a6b51;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Confirmação de Presença 💌</h1>
-    <p>Preencha o formulário abaixo para nos avisar se poderá comparecer:</p>
+    <h1>Confirmação de Presença 💚</h1>
+    <p>Pesquise e selecione o seu nome e da sua família abaixo:</p>
 
-    <!-- Google Forms incorporado -->
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSelWxqfizLTWxBzm9m3uOx4R11pgcpdnYvvK_k2pOiGO2mbiQ/viewform?embedded=true">
-      Carregando…
-    </iframe>
+    <input type="text" id="search" placeholder="Digite seu nome..." onkeyup="filtrarNomes()">
+    
+    <select id="nomes" multiple size="8"></select>
 
-    <p class="msg-final">Aguardamos a sua presença com muito carinho 💚</p>
-    <a class="btn" href="index.html">⬅ Voltar ao início</a>
+    <textarea id="observacao" placeholder="Observações (opcional)"></textarea>
+
+    <button onclick="enviarResposta()">Confirmar Presença</button>
+
+    <p class="msg-sucesso" id="mensagem"></p>
   </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2BAQA7KCrNUo-gexX4JYbyTHrA15-vfGc6ObNUlq-dnqp1vrLQtODPYKd8qR4ZCqsHg/exec";
+
+    // Lista fixa de convidados
+    const convidados = [
+      "Raquel Medeiros Velho - Família Velho",
+      "Luis - Família Velho",
+      "Fabi - Família Velho",
+      "Kiki - Família Velho",
+      "Aline - Família Velho",
+      "Wilmar - Família Velho",
+      "Vevy - Família Velho",
+      "Fábio Vevy - Família Velho",
+      "Davi - Família Velho",
+      "Henrique - Família Velho",
+      "Claudia - Família Velho",
+      "Dona Sonia - Família Velho",
+      "Maria - Família Velho",
+      "Lucas - Família Velho",
+      "Juci - Família Zanolli",
+      "Toni - Família Zanolli",
+      "Paula - Família Zanolli",
+      "Diego - Família Zanolli",
+      "Bia - Família Zanolli",
+      "Cecilia - Família Zanolli",
+      "Humberto - Família Zanolli",
+      "Laura - Família Zanolli",
+      "Vó Santa - Família Zanolli",
+      "Dete - Família Zanolli",
+      "Maria Julia - Família Zanolli",
+      "Tonton - Família Zanolli",
+      "Gabi - Família Zanolli",
+      "Pedro - Família Zanolli",
+      "Henry - Família Zanolli",
+      "Pati - Família Zanolli",
+      "Fe - Família Zanolli",
+      "Luis Fernando - Família Zanolli",
+      "Pri - Família Zanolli",
+      "Lorenzo - Família Zanolli",
+      "Ivonete - Família Zanolli",
+      "Zé - Família Zanolli",
+      "Maria Luiza - Família Zanolli",
+      "Edu - Família Zanolli",
+      "William - Família Zanolli",
+      "Carine - Família Zanolli",
+      "Be - Família Zanolli",
+      "Lino - Família Zanolli",
+      "Lise - Família Zanolli",
+      "Davi Lise - Família Zanolli",
+      "Antonio - Família Zanolli",
+      "Rafa - Família Zanolli",
+      "Arthur - Família Zanolli",
+      "Baby - Família Zanolli",
+      "Julia - Família Zanolli",
+      "Vó Dilma - Família Mendes",
+      "Cleide - Família Mendes",
+      "Ricardo - Família Mendes",
+      "Julia Mendes - Família Mendes",
+      "Joana - Família Mendes",
+      "Kety - Família Mendes",
+      "Rafa Keli - Família Mendes",
+      "Junior - Família Mendes",
+      "Monique - Família Mendes",
+      "Vitor - Família Mendes",
+      "Marcos - Família Mendes",
+      "Mayara - Família Mendes",
+      "Edinho - Família Mendes",
+      "Lucas Mayara - Família Mendes",
+      "Tia Edi - Família Mendes",
+      "Dioni - Família Mendes",
+      "Maria Mendes - Família Mendes",
+      "Namorado Maria - Família Mendes",
+      "Eliane - Família Mendes",
+      "João - Família Mendes",
+      "Nega - Família Mendes",
+      "Edmilson - Família Mendes",
+      "Anderson - Família Mendes",
+      "Carol - Família Mendes",
+      "Helena - Família Mendes",
+      "Derick - Família Mendes",
+      "Duda - Família Mendes",
+      "Nicolas - Família Mendes",
+      "Jauri - Amigos",
+      "Daura - Amigos",
+      "Manu - Amigos",
+      "Ju - Amigos",
+      "Max - Amigos",
+      "Monica - Amigos",
+      "Julia Monica - Amigos",
+      "Joaquim - Amigos",
+      "Cris - Amigos",
+      "Denner - Amigos",
+      "Livia - Amigos",
+      "Antoni - Amigos",
+      "Bode - Amigos",
+      "Kemily - Amigos",
+      "Chancho - Amigos",
+      "Mulher Chancho - Amigos",
+      "Ju Ease - Amigos",
+      "Paulo Ju - Amigos",
+      "Luana - Amigos",
+      "Lucas Luana - Amigos",
+      "Enzo - Amigos",
+      "Paulo - Amigos",
+      "Angela - Amigos",
+      "Maria Loja - Amigos",
+      "Erick Maria - Amigos",
+      "Mayara Ju - Amigos",
+      "Ezequiel - Amigos",
+      "Mariane - Amigos",
+      "Hilario - Amigos",
+      "Afonso - Amigos",
+      "Gabi Afonso - Amigos"
+    ];
+
+    // Preenche lista
+    const lista = document.getElementById("nomes");
+    convidados.forEach(nome => {
+      const opt = document.createElement("option");
+      opt.value = nome;
+      opt.textContent = nome;
+      lista.appendChild(opt);
+    });
+
+    function filtrarNomes() {
+      const termo = document.getElementById("search").value.toLowerCase();
+      lista.innerHTML = "";
+      convidados.filter(n => n.toLowerCase().includes(termo))
+        .forEach(n => {
+          const opt = document.createElement("option");
+          opt.value = n;
+          opt.textContent = n;
+          lista.appendChild(opt);
+        });
+    }
+
+    function enviarResposta() {
+      const selecionados = Array.from(lista.selectedOptions).map(o => o.value);
+      const observacao = document.getElementById("observacao").value;
+
+      if (selecionados.length === 0) {
+        alert("Selecione pelo menos um nome!");
+        return;
+      }
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        body: new URLSearchParams({
+          nomes: selecionados.join(", "),
+          observacao: observacao
+        })
+      })
+      .then(() => {
+        document.getElementById("mensagem").textContent = "Presença confirmada com sucesso! 💚";
+        document.getElementById("observacao").value = "";
+      })
+      .catch(() => {
+        document.getElementById("mensagem").textContent = "Erro ao enviar. Tente novamente.";
+      });
+    }
+  </script>
 </body>
 </html>

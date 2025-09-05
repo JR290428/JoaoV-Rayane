@@ -8,229 +8,240 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #333;
+      background-color: #f8fdf9;
+      color: #2e3d32;
       margin: 0;
       padding: 0;
       text-align: center;
     }
-    .container {
-      max-width: 600px;
-      margin: 30px auto;
+
+    header {
       padding: 20px;
-      background: #f8f8f8;
-      border-radius: 15px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
     }
+
     h1 {
       color: #4a6b51;
+      margin-bottom: 10px;
     }
-    p {
+
+    .explicacao {
+      font-size: 1.1em;
       margin-bottom: 20px;
+      color: #3c4f42;
     }
-    input[type="text"], textarea, select {
-      width: 100%;
+
+    .search-box {
+      margin: 10px auto;
+      width: 80%;
+      max-width: 500px;
       padding: 10px;
-      margin: 8px 0;
-      border-radius: 10px;
-      border: 1px solid #ccc;
+      border: 2px solid #4a6b51;
+      border-radius: 12px;
+      font-size: 1em;
     }
-    button {
-      background-color: #4a6b51;
-      color: white;
-      padding: 12px 20px;
-      margin-top: 15px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 16px;
+
+    .lista-convidados {
+      text-align: left;
+      max-width: 600px;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      max-height: 300px;
+      overflow-y: auto;
     }
-    button:hover {
-      background-color: #3d5944;
-    }
-    .msg-sucesso {
-      margin-top: 20px;
+
+    .grupo {
       font-weight: bold;
       color: #4a6b51;
+      margin-top: 15px;
+    }
+
+    label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    .selecionados {
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: left;
+      background: #e9f5ee;
+      border: 2px solid #4a6b51;
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .selecionado-item {
+      display: inline-block;
+      background: #4a6b51;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      margin: 5px;
+      font-size: 0.9em;
+    }
+
+    .selecionado-item span {
+      margin-left: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .observacao {
+      margin: 20px auto;
+      width: 80%;
+      max-width: 500px;
+      display: block;
+      padding: 10px;
+      border-radius: 12px;
+      border: 2px solid #4a6b51;
+      font-size: 1em;
+    }
+
+    .btn {
+      background: #4a6b51;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      margin-top: 20px;
+      border-radius: 25px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #3b5742;
+    }
+
+    .msg-final {
+      margin-top: 20px;
+      color: #4a6b51;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Confirmação de Presença 💚</h1>
-    <p>Pesquise e selecione o seu nome e da sua família abaixo:</p>
 
-    <input type="text" id="search" placeholder="Digite seu nome..." onkeyup="filtrarNomes()">
-    
-    <select id="nomes" multiple size="8"></select>
+  <header>
+    <h1>Confirmação de Presença</h1>
+    <p class="explicacao">Pesquise e selecione o seu nome e de sua família.  
+    Você pode escolher mais de um nome antes de confirmar.</p>
+  </header>
 
-    <textarea id="observacao" placeholder="Observações (opcional)"></textarea>
+  <input type="text" id="search" class="search-box" placeholder="Digite seu nome...">
 
-    <button onclick="enviarResposta()">Confirmar Presença</button>
-
-    <p class="msg-sucesso" id="mensagem"></p>
+  <div class="lista-convidados" id="listaConvidados">
+    <!-- Lista gerada pelo JavaScript -->
   </div>
 
+  <div class="selecionados" id="selecionados">
+    <p><strong>Nomes selecionados:</strong></p>
+  </div>
+
+  <textarea id="observacao" class="observacao" placeholder="Observações (opcional)"></textarea>
+
+  <button class="btn" onclick="enviarConfirmacao()">Confirmar Presença</button>
+
+  <p class="msg-final" id="msg"></p>
+
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2BAQA7KCrNUo-gexX4JYbyTHrA15-vfGc6ObNUlq-dnqp1vrLQtODPYKd8qR4ZCqsHg/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxauy9GnIKvDGEHsGTC1RqSZ-qzbWF4afwHwj_meMWUxZJGfAAiSnxccrIdUiMw3-hrrQ/exec";
 
-    // Lista fixa de convidados
-    const convidados = [
-      "Raquel Medeiros Velho - Família Velho",
-      "Luis - Família Velho",
-      "Fabi - Família Velho",
-      "Kiki - Família Velho",
-      "Aline - Família Velho",
-      "Wilmar - Família Velho",
-      "Vevy - Família Velho",
-      "Fábio Vevy - Família Velho",
-      "Davi - Família Velho",
-      "Henrique - Família Velho",
-      "Claudia - Família Velho",
-      "Dona Sonia - Família Velho",
-      "Maria - Família Velho",
-      "Lucas - Família Velho",
-      "Juci - Família Zanolli",
-      "Toni - Família Zanolli",
-      "Paula - Família Zanolli",
-      "Diego - Família Zanolli",
-      "Bia - Família Zanolli",
-      "Cecilia - Família Zanolli",
-      "Humberto - Família Zanolli",
-      "Laura - Família Zanolli",
-      "Vó Santa - Família Zanolli",
-      "Dete - Família Zanolli",
-      "Maria Julia - Família Zanolli",
-      "Tonton - Família Zanolli",
-      "Gabi - Família Zanolli",
-      "Pedro - Família Zanolli",
-      "Henry - Família Zanolli",
-      "Pati - Família Zanolli",
-      "Fe - Família Zanolli",
-      "Luis Fernando - Família Zanolli",
-      "Pri - Família Zanolli",
-      "Lorenzo - Família Zanolli",
-      "Ivonete - Família Zanolli",
-      "Zé - Família Zanolli",
-      "Maria Luiza - Família Zanolli",
-      "Edu - Família Zanolli",
-      "William - Família Zanolli",
-      "Carine - Família Zanolli",
-      "Be - Família Zanolli",
-      "Lino - Família Zanolli",
-      "Lise - Família Zanolli",
-      "Davi Lise - Família Zanolli",
-      "Antonio - Família Zanolli",
-      "Rafa - Família Zanolli",
-      "Arthur - Família Zanolli",
-      "Baby - Família Zanolli",
-      "Julia - Família Zanolli",
-      "Vó Dilma - Família Mendes",
-      "Cleide - Família Mendes",
-      "Ricardo - Família Mendes",
-      "Julia Mendes - Família Mendes",
-      "Joana - Família Mendes",
-      "Kety - Família Mendes",
-      "Rafa Keli - Família Mendes",
-      "Junior - Família Mendes",
-      "Monique - Família Mendes",
-      "Vitor - Família Mendes",
-      "Marcos - Família Mendes",
-      "Mayara - Família Mendes",
-      "Edinho - Família Mendes",
-      "Lucas Mayara - Família Mendes",
-      "Tia Edi - Família Mendes",
-      "Dioni - Família Mendes",
-      "Maria Mendes - Família Mendes",
-      "Namorado Maria - Família Mendes",
-      "Eliane - Família Mendes",
-      "João - Família Mendes",
-      "Nega - Família Mendes",
-      "Edmilson - Família Mendes",
-      "Anderson - Família Mendes",
-      "Carol - Família Mendes",
-      "Helena - Família Mendes",
-      "Derick - Família Mendes",
-      "Duda - Família Mendes",
-      "Nicolas - Família Mendes",
-      "Jauri - Amigos",
-      "Daura - Amigos",
-      "Manu - Amigos",
-      "Ju - Amigos",
-      "Max - Amigos",
-      "Monica - Amigos",
-      "Julia Monica - Amigos",
-      "Joaquim - Amigos",
-      "Cris - Amigos",
-      "Denner - Amigos",
-      "Livia - Amigos",
-      "Antoni - Amigos",
-      "Bode - Amigos",
-      "Kemily - Amigos",
-      "Chancho - Amigos",
-      "Mulher Chancho - Amigos",
-      "Ju Ease - Amigos",
-      "Paulo Ju - Amigos",
-      "Luana - Amigos",
-      "Lucas Luana - Amigos",
-      "Enzo - Amigos",
-      "Paulo - Amigos",
-      "Angela - Amigos",
-      "Maria Loja - Amigos",
-      "Erick Maria - Amigos",
-      "Mayara Ju - Amigos",
-      "Ezequiel - Amigos",
-      "Mariane - Amigos",
-      "Hilario - Amigos",
-      "Afonso - Amigos",
-      "Gabi Afonso - Amigos"
-    ];
+    const convidados = {
+      "Família Velho": ["Aline", "Claudia", "Davi", "Dona Sonia", "Fabio Vevy", "Fabi", "Henrique", "Kiki", "Lucas", "Luis", "Maria", "Raquel Medeiros Velho", "Vevy", "Wilmar"],
+      "Família Zanolli": ["Antonio", "Be", "Bia", "Cecilia", "Dete", "Diego", "Edu", "Fe", "Gabi", "Gabriela", "Henry", "Humberto", "Ivone", "Juci", "Laura", "Lino", "Lise", "Lorenzzo", "Luis Fernando", "Maria Julia", "Maria Luiza", "Paula", "Patricia", "Pedro", "Pri", "Toni", "Tonton", "William", "Ze"],
+      "Família Mendes": ["Anderson", "Carol", "Cleide", "Derick", "Dioni", "Duda", "Edinho", "Edmilson", "Eliane", "Helena", "Joana", "Joao", "Julia Mendes", "Junior", "Kety", "Lucas Mayara", "Maria Mendes", "Marcos", "Mayara", "Monique", "Nega", "Nicolas", "Ricardo", "Rafa Keli", "Vitor", "Vo Dilma"],
+      "Amigos": ["Afonso", "Angela", "Antonio", "Bode", "Chancho", "Cris", "Daura", "Denner", "Enzo", "Erick Maria", "Ezequiel", "Gabi Afonso", "Hilario", "Jauri", "Joaquim", "Ju", "Ju Ease", "Kemily", "Lucas Luana", "Luana", "Livia", "Manu", "Maria Loja", "Mariane", "Max", "Monica", "Paulo", "Paulo Ju", "Mayara Ju"]
+    };
 
-    // Preenche lista
-    const lista = document.getElementById("nomes");
-    convidados.forEach(nome => {
-      const opt = document.createElement("option");
-      opt.value = nome;
-      opt.textContent = nome;
-      lista.appendChild(opt);
-    });
+    let selecionados = [];
 
-    function filtrarNomes() {
-      const termo = document.getElementById("search").value.toLowerCase();
+    function renderLista(filtro = "") {
+      const lista = document.getElementById("listaConvidados");
       lista.innerHTML = "";
-      convidados.filter(n => n.toLowerCase().includes(termo))
-        .forEach(n => {
-          const opt = document.createElement("option");
-          opt.value = n;
-          opt.textContent = n;
-          lista.appendChild(opt);
-        });
+
+      Object.keys(convidados).forEach(grupo => {
+        const nomesFiltrados = convidados[grupo].filter(nome => nome.toLowerCase().includes(filtro.toLowerCase()));
+        if (nomesFiltrados.length > 0) {
+          const grupoDiv = document.createElement("div");
+          grupoDiv.innerHTML = `<p class='grupo'>${grupo}</p>`;
+          nomesFiltrados.sort().forEach(nome => {
+            const id = grupo + "-" + nome;
+            grupoDiv.innerHTML += `
+              <label>
+                <input type="checkbox" value="${grupo} - ${nome}" onchange="toggleSelecionado(this)">
+                ${nome}
+              </label>`;
+          });
+          lista.appendChild(grupoDiv);
+        }
+      });
     }
 
-    function enviarResposta() {
-      const selecionados = Array.from(lista.selectedOptions).map(o => o.value);
-      const observacao = document.getElementById("observacao").value;
+    function toggleSelecionado(checkbox) {
+      const valor = checkbox.value;
+      if (checkbox.checked) {
+        selecionados.push(valor);
+      } else {
+        selecionados = selecionados.filter(item => item !== valor);
+      }
+      renderSelecionados();
+    }
 
+    function renderSelecionados() {
+      const box = document.getElementById("selecionados");
+      box.innerHTML = "<p><strong>Nomes selecionados:</strong></p>";
+      selecionados.forEach(nome => {
+        const span = document.createElement("span");
+        span.className = "selecionado-item";
+        span.innerHTML = `${nome} <span onclick="removerSelecionado('${nome}')">x</span>`;
+        box.appendChild(span);
+      });
+    }
+
+    function removerSelecionado(nome) {
+      selecionados = selecionados.filter(item => item !== nome);
+      renderSelecionados();
+      document.querySelectorAll(`input[value="${nome}"]`).forEach(el => el.checked = false);
+    }
+
+    function enviarConfirmacao() {
       if (selecionados.length === 0) {
-        alert("Selecione pelo menos um nome!");
+        alert("Por favor, selecione pelo menos um nome.");
         return;
       }
 
-      fetch(SCRIPT_URL, {
-        method: "POST",
-        body: new URLSearchParams({
-          nomes: selecionados.join(", "),
-          observacao: observacao
+      const observacao = document.getElementById("observacao").value;
+      const formData = new FormData();
+      formData.append("nomes", selecionados.join(","));
+      formData.append("observacao", observacao);
+
+      fetch(SCRIPT_URL, { method: "POST", body: formData })
+        .then(response => response.text())
+        .then(() => {
+          document.getElementById("msg").innerText = "Confirmação enviada com sucesso! 💚";
+          selecionados = [];
+          renderSelecionados();
+          document.getElementById("observacao").value = "";
+          document.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = false);
         })
-      })
-      .then(() => {
-        document.getElementById("mensagem").textContent = "Presença confirmada com sucesso! 💚";
-        document.getElementById("observacao").value = "";
-      })
-      .catch(() => {
-        document.getElementById("mensagem").textContent = "Erro ao enviar. Tente novamente.";
-      });
+        .catch(err => alert("Erro ao enviar: " + err));
     }
+
+    document.getElementById("search").addEventListener("input", (e) => {
+      renderLista(e.target.value);
+    });
+
+    renderLista();
   </script>
+
 </body>
 </html>
